@@ -17,6 +17,7 @@ package com.kazuki43zoo.jpetstore.service;
 
 import com.kazuki43zoo.jpetstore.mapper.AccountMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,10 +29,9 @@ import java.util.Optional;
  * @author Kazuki Shimizu
  */
 @Service
-@RequiredArgsConstructor
 public class AccountUserDetailsService implements UserDetailsService {
-
-	private final AccountMapper accountMapper;
+	@Autowired
+	private AccountMapper accountMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {

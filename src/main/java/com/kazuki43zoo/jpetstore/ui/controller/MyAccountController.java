@@ -21,6 +21,7 @@ import com.kazuki43zoo.jpetstore.service.AccountService;
 import com.kazuki43zoo.jpetstore.component.event.EntityChangedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -38,11 +39,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @RequestMapping("/my/account")
 @Controller
-@RequiredArgsConstructor
 public class MyAccountController {
-
-	private final AccountService accountService;
-	private final ApplicationEventPublisher publisher;
+	@Autowired
+	private AccountService accountService;
+	@Autowired
+	private ApplicationEventPublisher publisher;
 
 	@ModelAttribute
 	public AccountForm setUpForm() {
