@@ -20,7 +20,6 @@ import com.kazuki43zoo.jpetstore.ui.ProductSearchCriteria;
 import com.kazuki43zoo.jpetstore.domain.Category;
 import com.kazuki43zoo.jpetstore.domain.Item;
 import com.kazuki43zoo.jpetstore.service.CatalogService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,10 +36,16 @@ import java.util.List;
 @RequestMapping("/catalog")
 @Controller
 public class CatalogController {
-	@Autowired
+
 	private CatalogService catalogService;
-	@Autowired
 	private ProductSearchCriteria productSearchCriteria;
+	@Autowired
+	public CatalogController(CatalogService catalogService, ProductSearchCriteria productSearchCriteria) {
+		this.catalogService = catalogService;
+		this.productSearchCriteria = productSearchCriteria;
+	}
+
+	@Autowired
 
 	@GetMapping
 	public String viewCatalog() {

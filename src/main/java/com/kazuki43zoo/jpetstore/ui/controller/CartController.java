@@ -20,7 +20,6 @@ import com.kazuki43zoo.jpetstore.service.CatalogService;
 import com.kazuki43zoo.jpetstore.ui.CartItem;
 import com.kazuki43zoo.jpetstore.domain.Item;
 import com.kazuki43zoo.jpetstore.ui.Cart;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,10 +34,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 
 public class CartController {
-	@Autowired
+
 	private CatalogService catalogService;
-	@Autowired
 	private Cart cart;
+	@Autowired
+	public CartController(CatalogService catalogService, Cart cart) {
+		this.catalogService = catalogService;
+		this.cart = cart;
+	}
 
 	@ModelAttribute
 	public CartUpdateForm setUpForm() {

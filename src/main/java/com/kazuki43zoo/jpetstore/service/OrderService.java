@@ -23,7 +23,6 @@ import com.kazuki43zoo.jpetstore.domain.Sequence;
 import com.kazuki43zoo.jpetstore.mapper.ItemMapper;
 import com.kazuki43zoo.jpetstore.mapper.OrderMapper;
 import com.kazuki43zoo.jpetstore.mapper.SequenceMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,14 +38,17 @@ import java.util.Optional;
 @Service
 public class OrderService {
 	private static final String ORDER_ID_SEQ_NAME = "ordernum";
-	@Autowired
 	private  ItemMapper itemMapper;
-	@Autowired
 	private OrderMapper orderMapper;
-	@Autowired
 	private SequenceMapper sequenceMapper;
-	@Autowired
 	private Clock clock;
+	@Autowired
+	public OrderService(ItemMapper itemMapper,OrderMapper orderMapper,SequenceMapper sequenceMapper,Clock clock){
+		this.itemMapper = itemMapper;
+		this.orderMapper = orderMapper;
+		this.sequenceMapper = sequenceMapper;
+		this.clock = clock;
+	}
 
 	@Transactional
 	public void createOrder(Order order, Account account) {

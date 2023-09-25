@@ -16,7 +16,6 @@
 package com.kazuki43zoo.jpetstore.service;
 
 import com.kazuki43zoo.jpetstore.mapper.AccountMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,8 +29,12 @@ import java.util.Optional;
  */
 @Service
 public class AccountUserDetailsService implements UserDetailsService {
-	@Autowired
+
 	private AccountMapper accountMapper;
+	@Autowired
+	public AccountUserDetailsService(AccountMapper accountMapper) {
+		this.accountMapper = accountMapper;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {

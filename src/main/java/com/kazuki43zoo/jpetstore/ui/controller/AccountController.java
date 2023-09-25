@@ -17,7 +17,6 @@ package com.kazuki43zoo.jpetstore.ui.controller;
 
 import com.kazuki43zoo.jpetstore.component.message.Messages;
 import com.kazuki43zoo.jpetstore.service.AccountService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,8 +37,12 @@ import javax.validation.groups.Default;
 @Controller
 public class AccountController {
 
-	@Autowired
+
 	private AccountService accountService;
+	@Autowired
+	public AccountController(AccountService accountService) {
+		this.accountService = accountService;
+	}
 
 	@ModelAttribute
 	public AccountForm setUpForm() {
